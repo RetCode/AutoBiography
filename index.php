@@ -6,7 +6,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $result = $mysqli->query("SELECT * FROM namecar");
     $nameCar = $result->fetch_all(MYSQLI_ASSOC);
 
-    $result = $mysqli->query("SELECT model FROM modelcar m JOIN car on m.id = car.namecar_id WHERE car.id = 1");
+    $result = $mysqli->query("SELECT model FROM modelcar");
     $modelCar = $result->fetch_all(MYSQLI_ASSOC);
 
     $result = $mysqli->query("SELECT * FROM engonetype");
@@ -88,8 +88,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
                         ?>
                     </select>
-                    <button class="search">Поиск (5)</button>
-                    <button class="show_button">Показать более...</button>                    
+                    <a href="SearchPage.php"><button class="search">Поиск (5)</button></a>           
                 </div>                
                 <div class="show_early">
                     <p class="show_early-text">Ваши последние 9 просмотренных автомобилей</p>
@@ -116,7 +115,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                 </div>
                 <div class="col-6 col-lg-2 mb-3 mt-2 footercol">
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a class="footer_link" href="MainPage.php">Главная</a></li>                         
+                        <li class="mb-2"><a class="footer_link" href="index.php">Главная</a></li>                         
                     </ul>
                 </div>
                 <div class="col-6 col-lg-3 mb-3 mt-2 footercol">

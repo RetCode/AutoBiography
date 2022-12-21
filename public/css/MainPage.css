@@ -110,24 +110,6 @@
     transition: 0.4s box-shadow, 0.4s background-color;
 }
 
-.show_button
-{
-    font-family: 'Montserrat';
-    font-weight: 400;
-    color: black;
-    /* border-radius: 5px; */
-    font-size: 15px;
-    margin-top: 5px;
-    margin-left: -7px;
-    border-color: transparent;
-    background-color: transparent;
-}
-
-.show_button:hover
-{
-    color: #a1a1a1;    
-}
-
 .show_early
 {
     margin-top: 40px;
