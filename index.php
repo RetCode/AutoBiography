@@ -3,10 +3,10 @@
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost", "root", "root", "carinfo");
 
-    $result = $mysqli->query("SELECT * FROM namecar");
+    $result = $mysqli->query("SELECT * FROM namecar ORDER BY name");
     $nameCar = $result->fetch_all(MYSQLI_ASSOC);
 
-    $result = $mysqli->query("SELECT model FROM modelcar");
+    $result = $mysqli->query("SELECT model FROM modelcar ORDER BY model");
     $modelCar = $result->fetch_all(MYSQLI_ASSOC);
 
     $result = $mysqli->query("SELECT * FROM engonetype");
