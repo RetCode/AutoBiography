@@ -1,3 +1,47 @@
+<?php
+
+    require_once "db.php";
+
+    $query = "";
+    $isOneParams = false;
+
+    if($_GET["namecar"] > 0)
+    {
+        $query = $query . " car.namecar_id = " . $_GET["namecar"];
+        $isOneParams = true;
+    }
+
+    if($_GET["model"] > 0)
+    {
+        $query = $query . " and car.model_id = " . $_GET["model"];
+    }
+
+    if($_GET["enginetype"] > 0)
+    {
+        if($isOneParams)
+            $query = $query . " and car.enginetype_id = " . $_GET["enginetype"];
+        else
+            $query = $query . " car.enginetype_id = " . $_GET["enginetype"];
+        $isOneParams = true;
+    }
+
+    if($_GET["body"] > 0)
+    {
+        if($isOneParams)
+            $query = $query . " and car.body_id = " . $_GET["body"];
+        else
+            $query = $query . " car.body_id = " . $_GET["body"];
+        $isOneParams = true;
+    }
+
+    if($isOneParams)
+        $result = $mysqli->query("SELECT car.id, namecar.name, modelcar.model, bodyname.body, engonetype.engine, car.image FROM `car` JOIN namecar ON namecar.id = car.namecar_id JOIN modelcar ON modelcar.id = car.model_id JOIN bodyname ON bodyname.id = car.body_id JOIN engonetype ON engonetype.id = car.enginetype_id WHERE ".$query);
+    else
+        $result = $mysqli->query("SELECT car.id, namecar.name, modelcar.model, bodyname.body, engonetype.engine, car.image FROM `car` JOIN namecar ON namecar.id = car.namecar_id JOIN modelcar ON modelcar.id = car.model_id JOIN bodyname ON bodyname.id = car.body_id JOIN engonetype ON engonetype.id = car.enginetype_id ORDER BY image");
+    $temp = $result->fetch_all(MYSQLI_ASSOC);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,395 +66,29 @@
                 <p class="technical_specifications-text">Результаты поиска</p>                               
             </div>
             <div class="search-block">
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/bmwsearch/bmwf90rest.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">BMW 530i F90</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Седан</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-                </button></a>
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/bmwsearch/bmwf90.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">BMW 525d F90</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Седан</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Дизель</p>
-                        </div>
-                    </div>
-                </button></a>
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/bmwsearch/bmwx6.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">BMW X6 F15</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Кроссовер</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Дизель</p>
-                        </div>
-                    </div>
-                </button></a>       
-                
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/bmwsearch/bmwe38.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">BMW 730d E38</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Седан</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Дизель</p>
-                        </div>
-                    </div>
-                </button></a> 
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/bmwsearch/bmwe39touring.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">BMW 525d E39 Touring</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Универсал</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Дизель</p>
-                        </div>
-                    </div>
-                </button></a> 
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/bmwsearch/bmwe39.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">BMW 530i E39</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Седан</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-                </button></a> 
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/bmwsearch/bmwm5e60.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">BMW M5 E60</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Седан</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-                </button></a> 
-
-                <a href="CarPage.php"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/bmwsearch/bmwe60.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">BMW 530i E60</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Седан</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-                </button></a> 
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/bmwsearch/bmwe60touring.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">BMW 530d E60 Touring</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Универсал</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Дизель</p>
-                        </div>
-                    </div>
-                </button></a>
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/bmwsearch/bmwe36touring.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">BMW 318i E36 Touring</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Универсал</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-                </button></a> 
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/bmwsearch/bmw4g22.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">BMW 425i G22</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Купе</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-
-                </button></a> 
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/bmwsearch/bmwm4g22.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">BMW M4 G22</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Купе</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-                </button></a> 
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/bmwsearch/bmw3g20.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">BMW 335i G20</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Седан</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-                </button></a> 
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/audisearch/audia6c4avant.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Audi A6 C4 Avant</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Универсал</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-                </button></a>
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/audisearch/audia6c5.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Audi A6 C5</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Седан</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Дизель</p>
-                        </div>
-                    </div>
-                </button></a>
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/audisearch/audia6allroadc5.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Audi A6 Allroad C5 Avant</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Универсал</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Дизель</p>
-                        </div>
-                    </div>
-                </button></a>
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/audisearch/audia6c6.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Audi A6 C6</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Седан</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-                </button></a> 
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/audisearch/audia6c6avant.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Audi A6 C6 Avant</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Универсал</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Дизель</p>
-                        </div>
-                    </div>
-                </button></a>
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/audisearch/audirs6c8avant.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Audi RS6 C8 Avant</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Универсал</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-                </button></a>
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/audisearch/audia4b5.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Audi A4 B5</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Седан</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-                </button></a> 
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/audisearch/audia4b5avant.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Audi A4 B5 Avant</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Универсал</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-                </button></a>                
-
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/dodgesearch/dodgeram1500.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Dodge RAM 1500</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Пикап</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-                </button></a>
-                <a href="#"><button class="search-result">
-                    <div class="row result-done">
-                        <div class="col-3">
-                            <img src="./public/img/dodgesearch/dodgechallengersrthellcat.png" class="image-car">
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Dodge Challenger SRT HellCat</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Купе</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-car">Бензин</p>
-                        </div>
-                    </div>
-                </button></a>
+                <?php 
+                    foreach($temp as $car)
+                    {
+                        echo '<a href="#">
+                                <button class="search-result">
+                                    <div class="row result-done">
+                                        <div class="col-3">
+                                            <img src="'.$car["image"].'" class="image-car">
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="text-car">'.$car["name"].' '.$car["model"].'</p>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="text-car">'.$car["body"].'</p>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="text-car">'.$car["engine"].'</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </a>';
+                    }
+                ?>
             </div>
         </div>
     </div>
@@ -428,11 +106,6 @@
                 <div class="col-6 col-lg-3 mb-3 mt-2 footercol">
                     <ul class="list-unstyled">
                         <li class="mb-2"><a class="footer_link" href="#">Политика конфедициальности</a></li>                          
-                    </ul>
-                </div>
-                <div class="col-6 col-lg-2 mb-3 mt-2 footercol">
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a class="footer_link" href="#">О нас</a></li>
                     </ul>
                 </div>
             </div>

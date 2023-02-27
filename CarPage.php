@@ -2,19 +2,7 @@
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost", "root", "root", "carinfo");
-
-    $result = $mysqli->query("SELECT * FROM namecar WHERE name='BMW'");
-    $nameCar = $result->fetch_all(MYSQLI_ASSOC);
-
-    $result = $mysqli->query("SELECT * FROM modelcar WHERE model='Series 5 E39'");
-    $modelCar = $result->fetch_all(MYSQLI_ASSOC);
-
-    $result = $mysqli->query("SELECT * FROM engonetype");
-    $engineType = $result->fetch_all(MYSQLI_ASSOC);
-
-    $result = $mysqli->query("SELECT * FROM bodyname");
-    $bodyCar = $result->fetch_all(MYSQLI_ASSOC);
-
+    
 ?>
 
 <!DOCTYPE html>
@@ -41,21 +29,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                     <a href="index.php"><button class="button_back">Назад</button></a>                
             </div>
             <div class="technical_specifications-block">
-                <p class="technical_specifications-text">Технические характеристики BMW 530i E60    </p> 
-                    <?php
-
-                        foreach($nameCar as $car)
-                        {
-                           // echo '<p class="technical_specifications-text">'.$car["name"].'</p>';
-                        }
-                    ?>
-                    <?php
-                        foreach($modelCar as $model)
-                        {
-                            //echo '<p class="technical_specifications-text">'.$model["model"].'</p>';
-                        }
-
-                    ?>                                
+                <p class="technical_specifications-text">Технические характеристики BMW 530i E60</p>                                
             </div>
             <div class="about-car">
                 <div class="bd-example">
@@ -326,12 +300,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                 </div>
                 <div class="col-6 col-lg-3 mb-3 mt-2 footercol">
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a class="footer_link" href="#">Политика конфедициальности</a></li>                          
-                    </ul>
-                </div>
-                <div class="col-6 col-lg-2 mb-3 mt-2 footercol">
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a class="footer_link" href="#">О нас</a></li>
+                        <li class="mb-2"><a class="footer_link" href="PrivacyPolicy.html">Политика конфедициальности</a></li>                          
                     </ul>
                 </div>
             </div>

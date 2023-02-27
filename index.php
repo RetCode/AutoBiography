@@ -1,7 +1,6 @@
 <?php
 
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    $mysqli = new mysqli("localhost", "root", "root", "carinfo");
+    require_once "db.php";
 
     $result = $mysqli->query("SELECT * FROM namecar ORDER BY name");
     $nameCar = $result->fetch_all(MYSQLI_ASSOC);
@@ -14,11 +13,6 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
     $result = $mysqli->query("SELECT * FROM bodyname");
     $bodyCar = $result->fetch_all(MYSQLI_ASSOC);
-
-    // echo "<pre>";
-    // var_dump($nameCar);
-    // echo "</pre>";
-
 ?>
 
 
@@ -38,70 +32,62 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>    
-    <!-- <input type="text" width="200px" value= {{$model_id}} /> -->
     <div class="content_page">
         <div class="container maincont">
             <div class="main">
                 <p class="filter_text">Найти интересующий вас автомобиль по заданным фильтрам</p>
                 <div class="filter">                    
-                    <select class="filter_select">
-                        <option selected>Марка</option>
+                    <select id="mark" class="filter_select">
+                        <option selected value="0">Марка</option>
                         <?php 
                         
                             foreach($nameCar as $car)
                             {
-                                echo '<option>'.$car["name"].'</option>';
+                                echo '<option value="'.$car["id"].'">'.$car["name"].'</option>';
                             }
 
                         ?>
                     </select>
-                    <select class="filter_select">
-                        <option selected value>Модель</option>
-                        <?php 
-                        
-                            foreach($modelCar as $model)
-                            {
-                                echo '<option>'.$model["model"].'</option>';
-                            }
+                    <select id="model" class="filter_select">
+                        <option selected value="0">Модель</option>
 
-                        ?>
                     </select>
-                    <select class="filter_select">
-                        <option selected value>Тип двигателя</option>
+                    <select id="enginetype" class="filter_select">
+                        <option selected value="0">Тип двигателя</option>
                         <?php 
                         
                             foreach($engineType as $engine)
                             {
-                                echo '<option>'.$engine["engine"].'</option>';
+                                echo '<option value="'.$engine["id"].'">'.$engine["engine"].'</option>';
                             }
 
                         ?>
                     </select>
-                    <select class="filter_select">
-                        <option selected value>Тип кузова</option>                        
+                    <select id="bodytype" class="filter_select">
+                        <option selected value="0">Тип кузова</option>                        
                         <?php 
                         
                             foreach($bodyCar as $body)
                             {
-                                echo '<option>'.$body["body"].'</option>';
+                                echo '<option value="'.$body["id"].'">'.$body["body"].'</option>';
                             }
 
                         ?>
                     </select>
-                    <a href="SearchPage.php"><button class="search">Поиск (5)</button></a>           
+                    <a id="query" href="SearchPage.php"><button class="search" id="searchid">Поиск</button></a>           
                 </div>                
                 <div class="show_early">
                     <p class="show_early-text">Ваши последние 9 просмотренных автомобилей</p>
                     <div class="car-box">
-                        <a class="show_early-car" href="#"><img src="./public/img/car-1.png" class="carblock"/><br>Acura NSX</a>
-                        <a class="show_early-car" href="#"><img src="./public/img/car-2.png" class="carblock"/><br>BMW X6 E70</a>
-                        <a class="show_early-car" href="#"><img src="./public/img/car-3.png" class="carblock"/><br>Volvo S60</a>
-                        <a class="show_early-car" href="#"><img src="./public/img/car-4.png" class="carblock"/><br>Dodge Charger SRT-8</a>
+                        <a class="show_early-car" href="#"><img src="./public/img/car-10.png" class="carblock"/><br>Audi A6 C6 2.0TDI</a>
+                        <a class="show_early-car" href="#"><img src="./public/img/car-11.png" class="carblock"/><br>BMW X5 E70 3.0i</a>
+                        <a class="show_early-car" href="#"><img src="./public/img/car-12.png" class="carblock"/><br>BMW X5M G05</a>
+                        <a class="show_early-car" href="#"><img src="./public/img/car-15.png" class="carblock"/><br>Dodge Challenger SRT HellCat</a>
                         <a class="show_early-car" href="CarPage.php"><img src="./public/img/car-7.png" class="carblock"/><br>BMW 530i E60</a>
-                        <a class="show_early-car" href="#"><img src="./public/img/car-8.png" class="carblock"/><br>BMW M3 E92</a>
-                        <a class="show_early-car" href="#"><img src="./public/img/car-5.png" class="carblock"/><br>Bentley Continental GT</a>
-                        <a class="show_early-car" href="#"><img src="./public/img/car-6.png" class="carblock"/><br>Chevrolet Corvette C6</a>
-                        <a class="show_early-car" href="#"><img src="./public/img/car-9.png" class="carblock"/><br>Ford Mustang GT 2011</a>
+                        <a class="show_early-car" href="#"><img src="./public/img/car-13.png" class="carblock"/><br>BMW 520d E39</a>
+                        <a class="show_early-car" href="#"><img src="./public/img/car-14.png" class="carblock"/><br>Audi A4 B6 1.9TDI</a>
+                        <a class="show_early-car" href="#"><img src="./public/img/car-17.png" class="carblock"/><br>Tesla Model S</a>
+                        <a class="show_early-car" href="#"><img src="./public/img/car-16.png" class="carblock"/><br>Dodge RAM 1500</a>
                     </div>                    
                 </div>
             </div>            
@@ -120,19 +106,72 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                 </div>
                 <div class="col-6 col-lg-3 mb-3 mt-2 footercol">
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a class="footer_link" href="#">Политика конфедициальности</a></li>                          
-                    </ul>
-                </div>
-                <div class="col-6 col-lg-2 mb-3 mt-2 footercol">
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a class="footer_link" href="#">О нас</a></li>
+                        <li class="mb-2"><a class="footer_link" href="PrivacyPolicy.html">Политика конфедициальности</a></li>                          
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
 </body>
-<?php
-// var_dump($db);
- ?>
+ <script src="public/js/jquery.js"></script>
+ <script>
+
+
+
+    function countCar()
+    {
+        $.ajax({
+            url: "searchengine.php",
+            method: "POST",
+            data: 
+            {
+                type: 'count',
+                namecar : mark.value,
+                model : model.value,
+                enginetype : enginetype.value,
+                body : bodytype.value,
+            }, 
+            success: function(data){
+                document.getElementById("searchid").innerHTML = "Поиск ("+data+")";
+            }
+
+            
+        });
+        document.getElementById("query").href = "SearchPage.php?namecar="+mark.value+"&model="+model.value+"&enginetype="+enginetype.value+"&body="+bodytype.value;
+    }
+
+    $( "#bodytype" ).change(function() {
+        countCar();
+    });
+
+    $( "#model" ).change(function() {
+        countCar();
+    });
+
+    $( "#enginetype" ).change(function() {
+        countCar();
+    });
+
+    $( "#mark" ).change(function() {
+
+        $.ajax({
+            url: "searchengine.php",
+            method: "POST",
+            data: 
+            {
+                type: 'mark',
+                senderObject: mark.value
+            }, 
+            success: function(data){
+                document.getElementById("model").innerHTML = data;
+                countCar();
+            }
+        });
+        
+    });
+
+    window.onload = function() {
+            countCar();
+        };
+ </script>
 </html>

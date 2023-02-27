@@ -28,8 +28,6 @@ body::-webkit-scrollbar-thumb:hover
 .maincont
 {
     margin-top: 72px;
-    /* background-color: #D9D9D9; */
-    /* height: 1080px; */
 }
 
 .button-block
@@ -74,12 +72,6 @@ body::-webkit-scrollbar-thumb:hover
     font-size: 30px;
 }
 
-/* .search-block
-{
-    display: flex;
-    justify-content: center;
-} */
-
 .search-result
 {
     width: 1280px;
@@ -107,12 +99,6 @@ body::-webkit-scrollbar-thumb:hover
     align-items: flex-end;
 }
 
-/* .image-car
-{
-    width: 310px;
-    height: 133px;
-} */
-
 .text-car
 {
     font-family: 'Montserrat';
@@ -124,8 +110,7 @@ body::-webkit-scrollbar-thumb:hover
 }
 
 .text-car:hover
-{
-    
+{    
     color: #FFFFFF;
 }
 
