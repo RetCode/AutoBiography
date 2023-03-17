@@ -11,7 +11,7 @@
         }
     body::-webkit-scrollbar-thumb
         {
-            background-color: #4289c7;  
+            background-color: #c73b3b;  
             border-radius: 10px;       
         }
 
@@ -89,7 +89,7 @@
     height: 32px;
     border-radius: 5px;
     border-color: transparent;
-    background-color: #4289c7;
+    background-color: #c73b3b;
     color: white;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
     transition: 0.4s;
@@ -99,7 +99,7 @@
 
 .search:hover
 {    
-    background-color: #3771a4;
+    background-color: #832d2d;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
     transition: 0.4s box-shadow, 0.4s background-color;
 }
@@ -151,7 +151,7 @@
 {
     transition: 0.2s background-color, 0.2s color;
     color: rgb(255, 255, 255);
-    background-color: #4289c7;
+    background-color: #c73b3b;
 }
 
 .color-option
